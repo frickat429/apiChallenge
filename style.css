@@ -1,0 +1,28 @@
+#header {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  #title {
+    color: rgb(0, 0, 0);
+    text-shadow: -1px -1px 0 rgb(247, 241, 241), 1px -1px 0 rgb(247, 241, 241),
+      -1px 1px 0 rgb(247, 241, 241), 1px 1px 0 rgb(247, 241, 241);
+  }
+  
+  img {
+    height: 100px;
+    width: 100px;
+  }
+  
+  #header-img {
+    height: 200px;
+    width: 600px;
+  } 
+
+  body {
+    font-family: fantasy;
+  }
+
+  #header-p {
+    font-family: fantasy;
+  }
