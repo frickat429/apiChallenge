@@ -13,7 +13,6 @@ function fetchPokedexEntries() {
 
             const entryList = document.querySelector('#pokemon-entries');
 
-            console.log(entries)
             entryList.innerHTML = '';
 
             // Loops through the fetched entries and create list items
@@ -27,17 +26,22 @@ function fetchPokedexEntries() {
                     if (currentPokemon) {
                         currentPokemon.remove ();
                     }
-                    let img = document.createElement('img');
-                    img.src = `assets/${pokemonName}.jpg`;
-                    img.alt = pokemonName; 
-                    entryList.appendChild(img); 
-                    currentPokemon = img
-                });
+                    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                    .then(response => response.json())
+                    .then(pokemonData => { 
+                        console.log(pokemonData)
+                        const img = document.createElement('img');
+                        img.src = pokemonData.sprites.front_default;
+                        img.alt = pokemonName;
+                        entryList.appendChild(img);
+                        currentPokemon = img; // Update currentPokemon to the newly displayed Pokémon
+                    })
+                    .catch(error => console.error('Error fetching Pokémon data:', error));
             });
-        })
-        .catch(function(error) {
-            console.error('Error fetching data:', error);
         });
+    })
+    
+    
 }
         
 
