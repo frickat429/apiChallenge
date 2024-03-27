@@ -4,27 +4,32 @@ function fetchPokedexEntries() {
     fetch(pokedexUrl)
         .then(function(response) {
             if (!response.ok) {
-                throw new Error('Failed to fetch data');
+                // throw new Error('Failed to fetch data'); 
             }
             return response.json();
         })
         .then(function(data) {
             const entries = data.pokemon_entries.slice(242, 251); // setting up the specific entries you need 
-            // Select the element where you want to append the fetched entries 
+
             const entryList = document.getElementById('pokemon-entries');
 
-            // Clear existing content in the list if any
+        
             entryList.innerHTML = '';
 
-            // Loop through the fetched entries and create list items
+            // Loops through the fetched entries and create list items
             entries.forEach(function(entry) {
                 const listItem = document.createElement('li');
-                listItem.textContent = entry.pokemon_species.name; // Assuming the entry structure has a name property
+                listItem.textContent = entry.pokemon_species.name; 
                 entryList.appendChild(listItem); 
-
+                
                 listItem.addEventListener('click', ()=>{
-                    console.log(listItem)
-                })
+                    const pokemonName = entry.pokemon_species.name; 
+                    
+                    let img = document.createElement('img');
+                    img.src = `assets/${pokemonName}.jpg`;
+                    img.alt = pokemonName; 
+                    entryList.appendChild(img); 
+                });
             });
         })
         .catch(function(error) {
