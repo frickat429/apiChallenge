@@ -5,7 +5,7 @@ function fetchPokedexEntries() {
     fetch(pokedexUrl)
         .then(resp => resp.json())
         .then(data => {
-            const entries = data.pokemon_entries.slice(242, 251); // this line only fetches entries 242 to 251 
+            const entries = data.pokemon_entries.slice(242, 251); // the first pokemon listed is the number after the first number here. If the number changes all poekmon before will apperar. The data is fetching all gen two pokemon
 
             const entryList = document.querySelector('#pokemon-entries');
 
