@@ -9,14 +9,25 @@ function fetchPokedexEntries() {
 
             const entryList = document.querySelector('#pokemon-entries');
 
-            entryList.innerHTML = '';
+            entryList.innerHTML = ''; 
+
+           
 
             // Loops through the fetched entries and create list items
             entries.forEach(function(entry) {
                 const listItem = document.createElement('li');
                 listItem.textContent = entry.pokemon_species.name; 
                 entryList.appendChild(listItem); 
-                
+                const likeButton = document.createElement(`button`) 
+                // console.log(likeButton) 
+                likeButton.textContent = `Like`
+                listItem.appendChild(likeButton) 
+                let likeCount = 0 
+                likeButton.addEventListener(`click`, ()=>{
+                    // console.log(likeButton) 
+                    likeCount++
+                    likeButton.textContent = `Like(${likeCount})`
+                })
                 listItem.addEventListener('click', () => {
                     const pokemonName = entry.pokemon_species.name; 
                     if (currentPokemon) {
