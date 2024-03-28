@@ -1,12 +1,9 @@
-
-
 body {
   font-family: fantasy;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   min-height: 100vh; 
   background: linear-gradient(to bottom, #4682b4, #00a36c);
@@ -18,40 +15,28 @@ body {
 
 #header {
   text-align: center;
+} 
+
+#header-img {
+  width: 100%;
+  height: auto;
+} 
+
+#header p {
+  text-align: center; 
+  font-size: 30px;
 }
 
 #title {
   color: rgb(0, 0, 0);
   text-shadow: -1px -1px 0 rgb(247, 241, 241), 1px -1px 0 rgb(247, 241, 241),
     -1px 1px 0 rgb(247, 241, 241), 1px 1px 0 rgb(247, 241, 241);
-}
-
-img {
-  height: 500px; 
-  width: 400px;
-  
-}
-
-#header-img {
-  width: 100%;
-  height: auto;
-}
-
-#pokemon-details {
-  text-align: center;
-  margin-top: 20px;
 } 
-
-#Dex-num,
-#weight {
-    font-size: 50px;
-}
-
 #pokemon-entries {
   list-style: none;
   padding: 0;
   text-align: left; 
-  margin-left: 20px; 
+  margin-left: 0; 
 }
 
 h1 {
@@ -60,8 +45,40 @@ h1 {
 } 
 
 #pokemon-entries li {
-  font-size: 50px; 
+  font-size: 22px; 
   text-align: left; 
   cursor: pointer;
 }
+
+
+
+#pokemon-details {
+  text-align: center;
+  margin-top: 20px; 
+  
+  justify-content: center;
+} 
+
+img {
+  height: 400px; 
+  width: 300px;
+  
+}
+#Dex-num,
+#weight {
+    font-size: 20px;
+}
+
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+
+
 

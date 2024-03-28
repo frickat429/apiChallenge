@@ -5,7 +5,7 @@ function fetchPokedexEntries() {
     fetch(pokedexUrl)
         .then(resp => resp.json())
         .then(data => {
-            const entries = data.pokemon_entries.slice(242, 251); // this line only fetchs entires 242 to 251 
+            const entries = data.pokemon_entries.slice(242, 251); // this line only fetches entries 242 to 251 
 
             const entryList = document.querySelector('#pokemon-entries');
 
@@ -20,22 +20,23 @@ function fetchPokedexEntries() {
                 listItem.addEventListener('click', () => {
                     const pokemonName = entry.pokemon_species.name; 
                     if (currentPokemon) {
-                        currentPokemon.remove ();
+                        currentPokemon.remove();
                     }
                     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-                    .then(resp => resp.json())
-                    .then(pokemonData => { 
-                        const img = document.createElement('img');
-                        img.src = pokemonData.sprites.front_default;
-                        img.alt = pokemonName;
-                        entryList.appendChild(img);
-                        numberElement = document.querySelector("#Dex-num");
-                        numberElement.textContent = `Dex Number: ${pokemonData.id}`;
-                        weightElement = document.querySelector("#weight");
-                        weightElement.textContent = `Weight: ${pokemonData.weight} lbs`; // Display Pokemon's Weight
-                        
-                        currentPokemon = img;
-                    });
+                        .then(resp => resp.json())
+                        .then(pokemonData => { 
+                            const img = document.createElement('img');
+                            img.src = pokemonData.sprites.front_default;
+                            img.alt = pokemonName;
+                            entryList.appendChild(img);
+                            const numberElement = document.querySelector("#Dex-num");
+                            numberElement.textContent = `Dex Number: ${pokemonData.id}`;
+                            const weightElement = document.querySelector("#weight");
+                            weightElement.textContent = `Weight: ${pokemonData.weight} lbs`; // Display Pokemon's Weight
+                            
+                            entryList.classList.add('centered-content');
+                            currentPokemon = img;
+                        });
                 });
             });
         });
