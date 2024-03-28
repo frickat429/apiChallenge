@@ -1,0 +1,2 @@
+About this app: 
+In Pokemon Legends you can see the image of the pokemon you click. Once clicked you can see the pokemons pokedex number and weight. To see another pokemon's data, click their name and the image and data will change to their own. If you like a certain pokemon, click the likw button to increase the like count by one. Likes will not be show after page refresh 
