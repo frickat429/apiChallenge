@@ -1,15 +1,11 @@
 function fetchPokedexEntries() {
-    const pokedexUrl = 'https://pokeapi.co/api/v2/pokedex/1/';
-    let currentPokemon = null ;
+    const pokedexUrl = 'https://pokeapi.co/api/v2/pokedex/1/'; // This fetch is getting the names of the pokemon onto the page
+    let currentPokemon = null;
+
     fetch(pokedexUrl)
-        .then(function(response) {
-            if (!response.ok) {
-                // throw new Error('Failed to fetch data'); 
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            const entries = data.pokemon_entries.slice(242, 251); // setting up the specific entries you need 
+        .then(resp => resp.json())
+        .then(data => {
+            const entries = data.pokemon_entries.slice(242, 251); // this line only fetchs entires 242 to 251 
 
             const entryList = document.querySelector('#pokemon-entries');
 
@@ -21,28 +17,28 @@ function fetchPokedexEntries() {
                 listItem.textContent = entry.pokemon_species.name; 
                 entryList.appendChild(listItem); 
                 
-                listItem.addEventListener('click', ()=>{
+                listItem.addEventListener('click', () => {
                     const pokemonName = entry.pokemon_species.name; 
                     if (currentPokemon) {
                         currentPokemon.remove ();
                     }
                     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-                    .then(response => response.json())
+                    .then(resp => resp.json())
                     .then(pokemonData => { 
-                        console.log(pokemonData)
                         const img = document.createElement('img');
                         img.src = pokemonData.sprites.front_default;
                         img.alt = pokemonName;
                         entryList.appendChild(img);
-                        currentPokemon = img; // Update currentPokemon to the newly displayed Pokémon
-                    })
-                    .catch(error => console.error('Error fetching Pokémon data:', error));
+                        numberElement = document.querySelector("#Dex-num");
+                        numberElement.textContent = `Dex Number: ${pokemonData.id}`;
+                        weightElement = document.querySelector("#weight");
+                        weightElement.textContent = `Weight: ${pokemonData.weight} lbs`; // Display Pokemon's Weight
+                        
+                        currentPokemon = img;
+                    });
+                });
             });
         });
-    })
-    
-    
 }
-        
 
 fetchPokedexEntries();
